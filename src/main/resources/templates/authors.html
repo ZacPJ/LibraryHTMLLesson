@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Author</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+            border: 2px solid #dddddd;
+        }
+        .inner{
+            border:none;
+        }
+
+        td, th {
+            border-left: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+<body bgcolor="#aaaaaa">
+<h1>Author Details</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Full Name</th>
+        <th>Books</th>
+    </tr>
+    </thead>
+    <tr th:each="author : ${authors}">
+        <td th:text="${author.id}"></td>
+        <td th:text="${author.fullName}"></td>
+        <td>
+            <table class = "inner">
+                <tr class = "inner" th:each="book :${author.books}">
+                <td class = "inner"><a th:text="${book.getTitle()}" th:href="@{/books/{id}(id=${book.getId()})}"></a></td>
+                </tr>
+            </table>
+        </td>
+
+    </tr>
+    </td>
+</table>
+</body>
+</html>
